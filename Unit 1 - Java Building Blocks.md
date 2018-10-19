@@ -135,45 +135,88 @@ at mainmethod.Zoo.main(Zoo.java:7)
 ```
 Reading args[0] goes fi ne and Zoo is printed out. Then Java panics. There’s no second argument! What to do? Java prints out an exception telling you it has no idea what to do with this argument at position 1.
 
+#### 1.3. Understanding Package Declarations and Imports
 
-#### Understanding Package Declarations and Imports
-##### Wildcards
-##### Redundant Imp#orts 
-##### Naming Conflicts 
-##### Creating a New Package 
-##### Code Formatting on the Exam 
-&nbsp;
-#### Creating Objects 
-##### Constructors
-##### Reading and Writing Object Fields 
-##### Instance Initializer Blocks 
-##### Order of Initialization 
-&nbsp;
-#### Distinguishing Between Object References and Primitives 
-##### Primitive Types 
-##### Reference Types 
-##### Key Differences 
-&nbsp;
-#### Declaring and Initializing Variables 
-##### Declaring Multiple Variables 
-##### Identifiers 
-&nbsp;
-#### Understanding Default Initialization of Variables 
-##### Local Variables 
-##### Instance and Class Variables 
-&nbsp;
-#### Understanding Variable Scope 
-&nbsp;
-#### Ordering Elements in a Class 
-&nbsp;
-#### Destroying Objects 
-##### Garbage Collection 
-##### finalize() 
-&nbsp;
-#### Benefits of Java
-&nbsp;
-#### Summary 
-&nbsp;
-#### Exam Essentials 
-&nbsp;
+Java puts classes in **packages**. These are logical groupings for classes.
+It needs you to tell it which packages to look in to fi nd code.
+
+Suppose you try to compile this code:
+
+```java
+public class ImportExample {
+	public static void main(String[] args) {
+		Random r = new Random(); // DOES NOT COMPILE
+		System.out.println(r.nextInt(10));
+	}
+}
+```
+Random cannot be resolved to a type
+
+This error could mean you made a typo in the name of the class. You double-check and discover that you didn’t. The other cause of this error is omitting a needed import statement.
+
+```java 
+import java.util.Random; // import tells us where to find Random
+
+public class ImportExample {
+	public static void main(String[] args) {
+		Random r = new Random();
+		System.out.println(r.nextInt(10)); // print a number between 0 and 9
+	}
+}
+```
+
+The import statement tells the compiler which package to look in to fi nd a class. This is similar to how mailing a letter works.
+
+Package names are hierarchical like the mail as well. The postal service starts with the top level, looking at your country fi rst. You start reading a package name at the beginning too. If it begins with java or javax, this means it came with the JDK.
+
+
+##### 1.3.1. Wildcards
+---
+
+##### 1.3.2. Redundant Imp#orts 
+##### 1.3.3. Naming Conflicts 
+##### 1.3.4. Creating a New Package 
+##### 1.3.5. Code Formatting on the Exam 
+
+#### 1.4. Creating Objects 
+##### 1.4.1. Constructors
+---
+##### 1.4.2. Reading and Writing Object Fields 
+---
+##### 1.4.3. Instance Initializer Blocks 
+---
+##### 1.4.4. Order of Initialization 
+---
+#### 1.5. Distinguishing Between Object References and Primitives 
+##### 1.5.1. Primitive Types 
+---
+##### 1.5.2. Reference Types 
+---
+##### 1.5.3. Key Differences 
+---
+#### 1.6. Declaring and Initializing Variables 
+##### 1.6.1. Declaring Multiple Variables 
+---
+##### 1.6.2. Identifiers 
+---
+#### 1.7. Understanding Default Initialization of Variables 
+##### 1.7.1. Local Variables 
+---
+##### 1.7.2. Instance and Class Variables 
+---
+#### 1.8. Understanding Variable Scope 
+
+#### 1.9. Ordering Elements in a Class 
+
+#### 1.10. Destroying Objects 
+##### 1.10.1. Garbage Collection 
+---
+##### 1.10.2. finalize() 
+---
+#### 1.11. Benefits of Java
+
+#### 1.12. Summary 
+
+#### 1.13. Exam Essentials 
+
 #### Review Questions 
