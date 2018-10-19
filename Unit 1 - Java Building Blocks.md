@@ -1,14 +1,14 @@
 # Unit 1 - Java Building Blocks
 
-## Java Building Blocks
+## 1. Java Building Blocks
 
-#### Understanding the Java Class Structure
+#### 1.1. Understanding the Java Class Structure
 
 An object is a runtime instance of a class in memory. All the various 
 objects of all the different classes represent the state of your program.
 
-##### Fields and Methods
-
+##### 1.1.1. Fields and Methods
+---
 Java classes have two primary elements: **methods**, often called functions 
 or procedures in other languages, and **fields**, more generally known as 
 variables. Together these are called the members of the class. Variables 
@@ -36,7 +36,8 @@ public class Animal {
 }
 ```
 
-##### Comments
+##### 1.1.2 Comments
+---
 There are three types of comments in Java. The fi rst is called a
 single-line comment:
 
@@ -58,7 +59,8 @@ single-line comment:
 ```
 
 
-##### Classes vs. Files
+##### 1.1.3. Classes vs. Files
+---
 Each Java class is defi ned in its own * .java file.   
 Java does not require that the class be public.  
 ```java
@@ -77,7 +79,7 @@ class Animal2 { //would not compile in a fi le named Animal.
 ```
 If you do have a public class, it needs to match the fi lename.
 
-#### Writing a main() Method
+#### 1.2. Writing a main() Method
 
 main() method is the gateway between the startup of a Java process, which is managed by the JVM, and the beginning of the programmer’s code.
 ```java
@@ -90,7 +92,7 @@ public class Zoo {
 To compile Java code, the fi le must have the extension .java. The name of the file must match the name of the class. The result is a fi le of bytecode by the same name, but with a .class filename extension.  
 **Bytecode** consists of instructions that the JVM knows how to execute.
 
-rules:   
+Rules:   
 - Each file can contain only one class.
 - The filename must match the class name, including case, and have a .java extension.
 
