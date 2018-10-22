@@ -2,12 +2,12 @@
 
 ## 1. Java Building Blocks
 
-#### 1.1. Understanding the Java Class Structure
+### 1.1. Understanding the Java Class Structure
 
 An object is a runtime instance of a class in memory. All the various 
 objects of all the different classes represent the state of your program.
 
-##### 1.1.1. Fields and Methods
+#### 1.1.1. Fields and Methods
 ---
 Java classes have two primary elements: **methods**, often called functions 
 or procedures in other languages, and **fields**, more generally known as 
@@ -36,7 +36,7 @@ public class Animal {
 }
 ```
 
-##### 1.1.2 Comments
+#### 1.1.2 Comments
 ---
 There are three types of comments in Java. The fi rst is called a
 single-line comment:
@@ -59,7 +59,7 @@ single-line comment:
 ```
 
 
-##### 1.1.3. Classes vs. Files
+#### 1.1.3. Classes vs. Files
 ---
 Each Java class is defi ned in its own * .java file.   
 Java does not require that the class be public.  
@@ -79,7 +79,7 @@ class Animal2 { //would not compile in a fi le named Animal.
 ```
 If you do have a public class, it needs to match the fi lename.
 
-#### 1.2. Writing a main() Method
+### 1.2. Writing a main() Method
 
 main() method is the gateway between the startup of a Java process, which is managed by the JVM, and the beginning of the programmer’s code.
 ```java
@@ -135,7 +135,7 @@ at mainmethod.Zoo.main(Zoo.java:7)
 ```
 Reading args[0] goes fi ne and Zoo is printed out. Then Java panics. There’s no second argument! What to do? Java prints out an exception telling you it has no idea what to do with this argument at position 1.
 
-#### 1.3. Understanding Package Declarations and Imports
+### 1.3. Understanding Package Declarations and Imports
 
 Java puts classes in **packages**. These are logical groupings for classes.
 It needs you to tell it which packages to look in to fi nd code.
@@ -170,7 +170,7 @@ The import statement tells the compiler which package to look in to fi nd a clas
 Package names are hierarchical like the mail as well. The postal service starts with the top level, looking at your country fi rst. You start reading a package name at the beginning too. If it begins with java or javax, this means it came with the JDK.
 
 
-##### 1.3.1. Wildcards
+#### 1.3.1. Wildcards
 ---
 Can use a shortcut to import all the classes in a package:
 ```java
@@ -187,7 +187,7 @@ You might think that including so many classes slows down your program, but it d
 
 Using the wildcard can shorten the import list.
 
-##### 1.3.2. Redundant Imports 
+#### 1.3.2. Redundant Imports 
 ---
 There’s one special package in the Java world called java.lang. This package is
 special in that it is automatically imported. You can still type this package in an import statement, but you don’t have to.
@@ -230,7 +230,7 @@ import java.nio.*.*; // NO GOOD – you can only have one wildcard and it must b
 import java.nio.files.Paths.*; // NO GOOD – you cannot import methods only class names
 ```
 
-##### 1.3.3. Naming Conflicts 
+#### 1.3.3. Naming Conflicts 
 ---
 One of the reasons for using packages is so that class names don’t have to be unique across all of Java.
 
@@ -256,7 +256,7 @@ public class Conflicts {
 
 ```
 
-##### 1.3.4. Creating a New Package 
+#### 1.3.4. Creating a New Package 
 ---
 
 ```sh
@@ -298,7 +298,7 @@ java -cp "C:\temp\directoryWithJars\*" myPackage.MyClass
 # This command will add all the JARs to the class path that are in directoryWithJars. It won’t include any JARs in the class path that are in a subdirectory of directoryWithJars.
 ```
 
-##### 1.3.5. Code Formatting on the Exam 
+#### 1.3.5. Code Formatting on the Exam 
 ---
 
 Not all questions will include the imports. If the exam isn’t asking about imports in the question, it will often omit the imports to save space. You’ll see examples with line numbers that don’t begin with 1 in this case. The question is telling you, “Don’t worry—imagine the code we omitted is correct; just focus on what I’m giving you.” This means when you do see the line number 1 or no line numbers at all, you have to make sure imports aren’t missing. Another thing the exam does to save space is to merge code on the same line. You should expect to see code like the following and to be asked whether it compiles. (You’ll learn about ArrayList in Chapter 3—assume that part is good for now.)
@@ -328,8 +328,8 @@ You’ll also see code that doesn’t have a main() method. When this happens, a
 
 > También verás el código que no tiene un método main (). Cuando esto suceda, suponga que el método main (), la definición de clase y todas las importaciones necesarias están presentes. Solo se le pregunta si la parte del código que se muestra se compila cuando se coloca en un código circundante válido.
 
-#### 1.4. Creating Objects 
-##### 1.4.1. Constructors
+### 1.4. Creating Objects 
+#### 1.4.1. Constructors
 ---
 To create an instance of a class
 ```java
@@ -354,7 +354,7 @@ public class Chick {
 public void Chick() { } // NOT A CONSTRUCTOR
 ```
 
-##### 1.4.2. Reading and Writing Object Fields 
+#### 1.4.2. Reading and Writing Object Fields 
 ---
 It’s possible to read and write instance variables directly from the caller. In this example, a mother swan lays eggs:
 
@@ -369,7 +369,7 @@ public class Swan {
 }
 ```
 
-##### 1.4.3. Instance Initializer Blocks 
+#### 1.4.3. Instance Initializer Blocks 
 ---
 When you learned about methods, you saw braces ({}). The code between the braces is called a `code block`.
 
@@ -388,7 +388,7 @@ When counting instance initializers, keep in mind that it does matter whether th
 > Si no hay el mismo número de llaves abiertas ({) y cerradas (}), el código no se compila. No importa que un juego de llaves esté dentro del método main (), todavía cuenta.
 Al contar los inicializadores de instancia, tenga en cuenta que sí importa si las llaves están dentro de un método. Sólo hay un par de llaves fuera de un método. La línea 6 es un inicializador de instancia.
 
-##### 1.4.4. Order of Initialization 
+#### 1.4.4. Order of Initialization 
 ---
 
 Remember:
@@ -441,12 +441,12 @@ public class Egg {
 ```
 If you answered 5, you got it right. Fields and blocks are run fi rst in order, setting number to 3 and then 4. Then the constructor runs, setting number to 5.
 
-#### 1.5. Distinguishing Between Object References and Primitives 
+### 1.5. Distinguishing Between Object References and Primitives 
 Two types of data: 
 - primitive types
 - reference types.
 
-##### 1.5.1. Primitive Types 
+#### 1.5.1. Primitive Types 
 ---
 8 data types, represent the building blocks for Java objects: 
 
@@ -551,7 +551,7 @@ double annoyingButLegal = 1_00_0.0_0; // this one compiles
 
 ```
 
-##### 1.5.2. Reference Types 
+#### 1.5.2. Reference Types 
 ---
 
 A **reference type** refers to an object (an instance of a class). Unlike primitive types that hold their values in the memory where the variable is allocated, references do not hold the value of the object they refer to. Instead, a reference “points” to an object by storing the memory address where the object is located, a concept referred to as a __pointer__. Unlike other languages, Java does not allow you to learn what the physical memory address is. You can only use the reference to refer to the object.
@@ -570,7 +570,7 @@ today = new java.util.Date();
 greeting = "How are you?";
 ```
 
-##### 1.5.3. Key Differences 
+#### 1.5.3. Key Differences 
 ---
 - Reference types can be assigned null, which means they do not currently refer to an object. 
 - Primitive types will give you a compiler error if you attempt to assign them null. 
@@ -588,12 +588,12 @@ int bad = len.length(); // DOES NOT COMPILE
 - notice that all the primitive types have lowercase type names. 
 - All classes that come with Java begin with uppercase.
 
-#### 1.6. Declaring and Initializing Variables 
+### 1.6. Declaring and Initializing Variables 
 - A variable is a name for a piece of memory that stores data. 
 - When you declare a variable, you need to state the variable type along with giving it a name.
 - Now that we’ve declared a variable, we can give it a value. This is called __initializing a variable__.
 
-##### 1.6.1. Declaring Multiple Variables 
+#### 1.6.1. Declaring Multiple Variables 
 ---
 ```java
 String s1, s2;
@@ -612,7 +612,7 @@ int i3; i4; // DOES NOT COMPILE i4;
 
 ```
 
-##### 1.6.2. Identifiers 
+#### 1.6.2. Identifiers 
 ---
 - The name must begin with a letter or the symbol $ or _.
 - Subsequent characters may also be numbers.
@@ -657,8 +657,8 @@ public // public is a reserved word
 - **Class** names begin with an uppercase letter followed by CamelCase. Don’t start any identifi ers with $. The compiler uses this symbol for some files.
 
 
-#### 1.7. Understanding Default Initialization of Variables 
-##### 1.7.1. Local Variables 
+### 1.7. Understanding Default Initialization of Variables 
+#### 1.7.1. Local Variables 
 ---
 - is a variable defi ed within a method.
 - Local variables must be initialized before use
@@ -689,7 +689,7 @@ System.out.println(onlyOneBranch); // DOES NOT COMPILE
 }
 ```
 
-##### 1.7.2. Instance and Class Variables 
+#### 1.7.2. Instance and Class Variables 
 ---
 - Variables that are not local variables are known as instance variables or class variables.
 - Instance variables are also called fi elds. Class variables are shared across multiple objects.
@@ -705,22 +705,22 @@ System.out.println(onlyOneBranch); // DOES NOT COMPILE
 | char | '\u0000' (NUL)| 
 | All object references (everything else) | null| 
 
-#### 1.8. Understanding Variable Scope 
+### 1.8. Understanding Variable Scope 
 
-#### 1.9. Ordering Elements in a Class 
+### 1.9. Ordering Elements in a Class 
 
-#### 1.10. Destroying Objects 
-##### 1.10.1. Garbage Collection 
+### 1.10. Destroying Objects 
+#### 1.10.1. Garbage Collection 
 ---
-##### 1.10.2. finalize() 
+#### 1.10.2. finalize() 
 ---
-#### 1.11. Benefits of Java
+### 1.11. Benefits of Java
 
-#### 1.12. Summary 
+### 1.12. Summary 
 
-#### 1.13. Exam Essentials 
+### 1.13. Exam Essentials 
 
-#### Review Questions
+### Review Questions
 
 
 
