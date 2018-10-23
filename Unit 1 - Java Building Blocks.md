@@ -813,18 +813,368 @@ problem here is that by the end of the method, the object is no longer eligible 
 
 ### 1.11. Benefits of Java
 
+- **Object Oriented**, which means all code is defined in classes and most of those classes can be instantiated into objects.
+- **Encapsulation** access modifiers to protect data from unintended access and modification.
+- **Platform Independent** Java is an interpreted language because it gets compiled to bytecode.
+- **Robust** One of the major advantages of Java over C++ is that it prevents memory leaks. Java manages memory on its own and does garbage collection automatically. Bad memory management in C++ is a big source of errors in programs.
+- **Simple** Java was intended to be simpler than C++. 
+	- __In addition to eliminating pointers__, it got rid of operator overloading. In C++, you could write a + b and have it mean almost anything.
+- **Secure Java code runs inside the JVM**. This creates a sandbox that makes it hard for Java code to do evil things to the computer it is running on.
+
 ### 1.12. Summary 
 
 ### 1.13. Exam Essentials 
 
+- **Be able to write code using a main() method**. A main() method is usually written as public static void main(String[] args). Arguments are referenced starting with args[0]. Accessing an argument that wasn’t passed in will cause the code to throw an exception.
+- **Understand the effect of using packages and imports** . Packages contain Java classes. Classes can be imported by class name or wildcard. Wildcards do not look at subdirectories. In the event of a confl ict, class name imports take precedence.
+- **Be able to recognize a constructor**. A constructor has the same name as the class. It looks like a method without a return type.
+**Be able to identify legal and illegal declarations and initialization**. Multiple variables can be declared and initialized in the same statement when they share a type. Local variables require an explicit initialization; others use the default value for that  type. Identifi ers may contain letters, numbers, $, or _. Identifi ers may not begin with numbers. Numeric literals may contain underscores between two digits and begin with 1–9, 0, 0x, 0X, 0b, and 0B.
+- **Be able to determine where variables go into and out of scope**. All variables go into scope when they are declared. Local variables go out of scope when the block they are declared in ends. Instance variables go out of scope when the object is garbage collected. Class variables remain in scope as long as the program is running.
+- **Be able to recognize misplaced statements in a class**. Package and import statements are optional. If present, both go before the class declaration in that order. Fields and methods are also optional and are allowed in any order within the class declaration.
+- **Know how to identify when an object is eligible for garbage collection**. Draw a diagram to keep track of references and objects as you trace the code. When no arrows point to a box (object), it is eligible for garbage collection.
+
 ### Review Questions
 
+1. Which of the following are valid Java identifiers? (Choose all that apply)
+- A. A$B :heavy_check_mark: :heavy_check_mark:
+- B. _helloWorld :heavy_check_mark:
+- C. true
+- D. java.lang
+- E. Public :heavy_check_mark: :heavy_check_mark:
+- F. 1980_s 
 
+2. What is the output of the following program?
+```java 
+1: public class WaterBottle {
+2: private String brand;
+3: private boolean empty;
+4: public static void main(String[] args) {
+5: WaterBottle wb = new WaterBottle();
+6: System.out.print("Empty = " + wb.empty);
+7: System.out.print(", Brand = " + wb.brand);
+8: } }
+```
+- A. Line 6 generates a compiler error.
+- B. Line 7 generates a compiler error.
+- C. There is no output.
+- D. Empty = false, Brand = null :heavy_check_mark:
+- E. Empty = false, Brand =
+- F. Empty = null, Brand = null
 
+3. Which of the following are true? (Choose all that apply)
+```java
+4: short numPets = 5;
+5: int numGrains = 5.6;
+6: String name = "Scruffy";
+7: numPets.length();
+8: numGrains.length();
+9: name.length();
+```
+- A. Line 4 generates a compiler error.
+- B. Line 5 generates a compiler error. :heavy_check_mark:
+- C. Line 6 generates a compiler error.
+- D. Line 7 generates a compiler error. :heavy_check_mark:
+- E. Line 8 generates a compiler error. :heavy_check_mark:
+- F. Line 9 generates a compiler error.
+- G. The code compiles as is.
 
+4. Given the following class, which of the following is true? (Choose all that apply)
+```java
+1: public class Snake {
+2:
+3: public void shed(boolean time) {
+4:
+5: if (time) {
+6:
+7: }
+8: System.out.println(result);
+9:
+10: }
+11: }
+```
+- A. If String result = "done"; is inserted on line 2, the code will compile. :heavy_check_mark:
+- B. If String result = "done"; is inserted on line 4, the code will compile. :heavy_check_mark:
+- C. If String result = "done"; is inserted on line 6, the code will compile.
+- D. If String result = "done"; is inserted on line 9, the code will compile.
+- E. None of the above changes will make the code compile.
 
+5. Given the following classes, which of the following can independently replace INSERT IMPORTS HERE to make the code compile? (Choose all that apply)
+```java
+package aquarium;
+public class Tank { }
 
+package aquarium.jellies;
+public class Jelly { }
 
+package visitor;
+INSERT IMPORTS HERE
+public class AquariumVisitor {
+	public void admire(Jelly jelly) { } }
+```
+- A. import aquarium.*;
+- B. import aquarium.*.Jelly;
+- C. import aquarium.jellies.Jelly; :heavy_check_mark:
+- D. import aquarium.jellies.*; :heavy_check_mark:
+- E. import aquarium.jellies.Jelly.*;
+- F. None of these can make the code compile.
+
+6. Given the following classes, what is the maximum number of imports that can be removed and have the code still compile?
+```java
+package aquarium; public class Water { }
+
+package aquarium;
+import java.lang.*;
+import java.lang.System;
+import aquarium.Water;
+import aquarium.*;
+public class Tank {
+	public void print(Water water) {
+		System.out.println(water); } }
+```
+- A. 0
+- B. 1
+- C. 2 
+- D. 3 :heavy_check_mark: :heavy_check_mark:
+- E. 4
+- F. Does not compile. 
+
+7. Given the following classes, which of the following snippets can be inserted in place of INSERT IMPORTS HERE and have the code compile? (Choose all that apply)
+```java
+package aquarium;
+public class Water {
+	boolean salty = false;
+}
+
+package aquarium.jellies;
+public class Water {
+	boolean salty = true;
+}
+
+package employee;
+INSERT IMPORTS HERE
+public class WaterFiller {
+	Water water;
+}
+```
+- A. import aquarium.*; :heavy_check_mark:
+- B. import aquarium.Water; :heavy_check_mark: :heavy_check_mark:
+	- import aquarium.jellies.*; 
+- C. import aquarium.*; :heavy_check_mark: :heavy_check_mark:
+	- import aquarium.jellies.Water;
+- D. import aquarium.*;
+	- import aquarium.jellies.*;
+- E. import aquarium.Water;
+	- import aquarium.jellies.Water;
+- F. None of these imports can make the code compile.
+
+8. Given the following class, which of the following calls print out Blue Jay? (Choose all that apply)
+```java
+public class BirdDisplay {
+public static void main(String[] name) {
+	System.out.println(name[1]);
+} }
+```
+- A. java BirdDisplay Sparrow Blue Jay 
+- B. java BirdDisplay Sparrow "Blue Jay" :heavy_check_mark:
+- C. java BirdDisplay Blue Jay Sparrow
+- D. java BirdDisplay "Blue Jay" Sparrow
+- E. java BirdDisplay.class Sparrow "Blue Jay"
+- F. java BirdDisplay.class "Blue Jay" Sparrow
+- G. Does not compile.
+
+9. Which of the following legally fill in the blank so you can run the main() method from the command line? (Choose all that apply)
+```java
+public static void main( )
+```
+- A. String[] _names :heavy_check_mark:
+- B. String[] 123 
+- C. String abc[] :heavy_check_mark:
+- D. String _Names[] :heavy_check_mark:
+- E. String... $n :heavy_check_mark:
+- F. String names
+- G. None of the above.
+
+10. Which of the following are legal entry point methods that can be run from the command line? (Choose all that apply)
+
+- A. private static void main(String[] args)
+- B. public static final main(String[] args)
+- C. public void main(String[] args)
+- D. public static void test(String[] args)
+- E. public static void main(String[] args) :heavy_check_mark:
+- F. public static main(String[] args)
+- G. None of the above.
+
+11. Which of the following are true? (Choose all that apply)
+- A. An instance variable of type double defaults to null.
+- B. An instance variable of type int defaults to null.
+- C. An instance variable of type String defaults to null. :heavy_check_mark:
+- D. An instance variable of type double defaults to 0.0. :heavy_check_mark: :heavy_check_mark:
+- E. An instance variable of type int defaults to 0.0.
+- F. An instance variable of type String defaults to 0.0.
+- G. None of the above.
+
+12. Which of the following are true? (Choose all that apply)
+- A. A local variable of type boolean defaults to null.
+- B. A local variable of type float defaults to 0.
+- C. A local variable of type Object defaults to null. 
+- D. A local variable of type boolean defaults to false.
+- E. A local variable of type boolean defaults to true.
+- F. A local variable of type float defaults to 0.0.
+- G. None of the above. :heavy_check_mark: :heavy_check_mark:
+
+> local variables do not get assigned default values.
+
+13. Which of the following are true? (Choose all that apply)
+- A. An instance variable of type boolean defaults to false. :heavy_check_mark:
+- B. An instance variable of type boolean defaults to true.
+- C. An instance variable of type boolean defaults to null.
+- D. An instance variable of type int defaults to 0. :heavy_check_mark:
+- E. An instance variable of type int defaults to 0.0.
+- F. An instance variable of type int defaults to null.
+- G. None of the above.
+
+14. Given the following class in the file /my/directory/named/A/Bird.java:
+INSERT CODE HERE public class Bird { }
+
+Which of the following replaces INSERT CODE HERE if we compile from /my/directory? (Choose all that apply)
+- A. package my.directory.named.a;
+- B. package my.directory.named.A;
+- C. package named.a;
+- D. package named.A; :heavy_check_mark:
+- E. package a;
+- F. package A; 
+- G. Does not compile.
+
+15. Which of the following lines of code compile? (Choose all that apply)
+- A. int i1 = 1_234; :heavy_check_mark:
+- B. double d1 = 1_234_.0;
+- C. double d2 = 1_234._0;
+- D. double d3 = 1_234.0_;
+- E. double d4 = 1_234.0; :heavy_check_mark:
+- F. None of the above.
+
+16. Given the following class, which of the following lines of code can replace INSERT CODE HERE to make the code compile? (Choose all that apply)
+```java
+public class Price {
+public void admission() {
+INSERT CODE HERE
+System.out.println(amount);
+} }
+```
+- A. int amount = 9L;
+- B. int amount = 0b101; :heavy_check_mark:
+- C. int amount = 0xE; :heavy_check_mark:
+- D. double amount = 0xE; :heavy_check_mark: :heavy_check_mark:
+- E. double amount = 1_2_.0_0;
+- F. int amount = 1_2_;
+- G. None of the above.
+
+17. Which of the following are true? (Choose all that apply)
+```java
+public class Bunny {
+public static void main(String[] args) {
+	Bunny bun = new Bunny();
+} }
+```
+- A. Bunny is a class. :heavy_check_mark:
+- B. bun is a class.
+- C. main is a class.
+- D. Bunny is a reference to an object.
+- E. bun is a reference to an object. :heavy_check_mark:
+- F. main is a reference to an object.
+- G. None of the above.
+
+18. Which represent the order in which the following statements can be assembled into a program that will compile successfully? (Choose all that apply)
+```java
+A: class Rabbit {}
+B: import java.util.*;
+C: package animals;
+```
+- A. A, B, C
+- B. B, C, A
+- C. C, B, A :heavy_check_mark:
+- D. B, A :heavy_check_mark: :heavy_check_mark:
+- E. C, A :heavy_check_mark: :heavy_check_mark:
+- F. A, C
+- G. A, B
+
+19. Suppose we have a class named Rabbit. Which of the following statements are true? (Choose all that apply)
+```java
+1: public class Rabbit {
+2: public static void main(String[] args) {
+3: 		Rabbit one = new Rabbit();
+4: 		Rabbit two = new Rabbit();
+5: 		Rabbit three = one;
+6: 		one = null;
+7: 		Rabbit four = one;
+8: 		three = null;
+9: 		two = null;
+10: 	two = new Rabbit();
+11: 	System.gc();
+12: } }
+```
+- A. The Rabbit object from line 3 is first eligible for garbage collection immediately following line 6.
+- B. The Rabbit object from line 3 is first eligible for garbage collection immediately following line 8. :heavy_check_mark:
+- C. The Rabbit object from line 3 is first eligible for garbage collection immediately following line 12.
+- D. The Rabbit object from line 4 is first eligible for garbage collection immediately following line 9. :heavy_check_mark: :heavy_check_mark:
+- E. The Rabbit object from line 4 is first eligible for garbage collection immediately following line 11.
+- F. The Rabbit object from line 4 is first eligible for garbage collection immediately following line 12.
+
+20. What is true about the following code? (Choose all that apply)
+```java
+public class Bear {
+	protected void finalize() {
+		System.out.println("Roar!");
+	}
+
+	public static void main(String[] args) {
+		Bear bear = new Bear();
+		bear = null;
+		System.gc();
+		} }
+```
+- A. finalize() is guaranteed to be called.
+- B. finalize() might or might not be called :heavy_check_mark: :heavy_check_mark:s
+- C. finalize() is guaranteed not to be called.
+- D. Garbage collection is guaranteed to run.
+- E. Garbage collection might or might not run. :heavy_check_mark:
+- F. Garbage collection is guaranteed not to run.
+- G. The code does not compile.
+
+21. What does the following code output?
+```java
+1: public class Salmon {
+2: 		int count;
+3: 		public void Salmon() {
+4: 			count = 4;
+5: 		}
+6: 		public static void main(String[] args) {
+7: 			Salmon s = new Salmon();
+8: 			System.out.println(s.count);
+9: 			} }
+```
+- A. 0 :heavy_check_mark:
+- B. 4 
+- C. Compilation fails on line 3.
+- D. Compilation fails on line 4.
+- E. Compilation fails on line 7.
+- F. Compilation fails on line 8.
+
+22. Which of the following are true statements? (Choose all that apply)
+- A. Java allows operator overloading. :heavy_check_mark:
+- B. Java code compiled on Windows can run on Linux. :heavy_check_mark:
+- C. Java has pointers to specific locations in memory. 
+- D. Java is a procedural language.
+- E. Java is an object-oriented language. :heavy_check_mark:
+- F. Java is a functional programming language.
+
+23. Which of the following are true? (Choose all that apply)
+- A. javac compiles a .class file into a .java file.
+- B. javac compiles a .java file into a .bytecode file. 
+- C. javac compiles a .java file into a .class file. :heavy_check_mark:
+- D. Java takes the name of the class as a parameter. :heavy_check_mark: :heavy_check_mark:
+- E. Java takes the name of the .bytecode file as a parameter.
+- F. Java takes the name of the .class file as a parameter.
 
 
 
