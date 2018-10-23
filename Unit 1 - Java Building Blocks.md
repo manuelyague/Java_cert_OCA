@@ -707,13 +707,110 @@ System.out.println(onlyOneBranch); // DOES NOT COMPILE
 
 ### 1.8. Understanding Variable Scope 
 
+You’ve learned that local variables are declared within a method.
+
+```java
+public void eat(int piecesOfCheese) {
+	int bitesOfCheese = 1;
+}
+```
+
+__`The exam may attempt to trick you with questions on scope.`__
+
+```java
+1: public class Mouse {
+2: 		static int MAX_LENGTH = 5; //class variable
+3: 		int length;	// instance variable
+4: 		public void grow(int inches) { //local variables
+5: 			if (length < MAX_LENGTH) {
+6: 				int newSize = length + inches; //local variables
+7: 				length = newSize;
+8: 			}
+9: 		}
+10:}
+```
+
+- Local variables—in scope from declaration to end of block
+- Instance variables—in scope from declaration until object garbage collected
+- Class variables—in scope from declaration until program ends
+   
+- There are two local variables in this method. 
+- bitesOfCheese is declared inside the method. 
+- piecesOfCheese is called a method parameter.
+
 ### 1.9. Ordering Elements in a Class 
 
+| Element | Example| Required? | Where does it go?| 
+| -| -| -| -|
+| Package declaration | package abc; | No | First line in the file| 
+| Import statements | import java.util.*;|  No|  Immediately after the package| 
+| Class declaration | public class C | Yes | Immediately after the import
+| Field declarations | int value; | No | Anywhere inside a class| 
+| Method declarations|  void method()|  No | Anywhere inside a class| 
+
+You need to know one more thing about class structure for the OCA exam:
+
+- multiple classes can be defi ned in the same file, but only one of them is allowed to be public. 
+- The public class matches the name of the file.
+
+```java
+1: public class Meerkat { }
+2: class Paw { }
+```
+
 ### 1.10. Destroying Objects 
+
+- Java provides a garbage collector to automatically look for objects that aren’t needed anymore.
+- All Java objects are stored in your program memory’s heap.
+
 #### 1.10.1. Garbage Collection 
 ---
+- Process of automatically freeing memory on the heap by deleting objects that are no longer reachable in your program.  
+- You do need to know that System.gc() is not guaranteed to run, and you should be able to recognize when objects become eligible for garbage collection.
+- System.gc()., Java is free to ignore the request.
+- Java waits patiently until the code no longer needs that  memory.
+An object will remain on the heap until it is no longer reachable. An object is no longer reachable when one of two situations occurs:
+	- he object no longer has any references pointing to it.
+	- All references to the object have gone out of scope.
+
+> - El objeto ya no tiene ninguna referencia que lo señale.
+> - Todas las referencias al objeto han quedado fuera de alcance.
+
+- The **reference** is a variable that has a name and can be used to access the contents of an object. A **reference** can be assigned to another reference, passed to a method, or returned from a method. All references are the same size, no matter what their type is.
+An **object** sits on the heap and does not have a name. Therefore, you have no way to access an object except through a reference. Objects come in all different shapes and sizes and consume varying amounts of memory. An object cannot be assigned to another object, nor can an object be passed to a method or returned from a method. It is the object that gets garbage collected, not its reference.
+
+- **figure 1**
+
+```java
+1: public class Scope {
+2: public static void main(String[] args) {
+3: String one, two;
+4: one = new String("a");
+5: two = new String("b");
+6: one = two;
+7: String three = one;
+8: one = null;
+9: } }
+```
+When you get asked a question about garbage collection on the exam, we recommend you draw what’s going on. There’s a lot to keep track of in your head and it’s easy to make a silly mistake trying to keep it all in your memory. Let’s try it together now. Really. Get a pencil and paper. We’ll wait.  
+
+Got that paper? Okay, let’s get started. On line 3, we write one and two. Just the words. No need for boxes or arrows yet since no objects have gone on the heap yet. On line 4, we have our fi rst object. Draw a box with the string "a" in it and draw an arrow from the word one to that box. Line 5 is similar. Draw another box with the string "b" in it this time and an arrow from the word two. At this point, your work should look like Figure 1.2.
+
+- **figure 2**
+
+On line 6, the variable one changes to point to "b". Either erase or cross out the arrow from one and draw a new arrow from one to "b". On line 7, we have a new variable, so write the word three and draw an arrow from three to "b". Notice that three points to what one is pointing to right now and not what it was pointing to at the beginning. This is why we are drawing pictures. It’s easy to forget something like that. At this point, your work should look like Figure 1.3.
+
+- **figure 3**
+
+Finally, cross out the line between one and "b" since line 8 sets this variable to null. Now, we were trying to fi nd out when the objects were fi rst eligible for garbage collection. On line 6, we got rid of the only arrow pointing to "a", making that object eligible for garbage collection. "b" has arrows pointing to it until it goes out of scope. This means "b" doesn’t go out of scope until the end of the method on line 9.
+
 #### 1.10.2. finalize() 
 ---
+- This method gets called if the garbage collector tries to collect the object.
+- Remember, finalize() is only run when the object is eligible for garbage collection.
+- The
+problem here is that by the end of the method, the object is no longer eligible for garbage collection because a static variable is referring to it and static variables stay in scope until the program ends. Java is smart enough to realize this and aborts the attempt to throw out the object. Now suppose later in the program objects is set to null. Oh, good, we can finally remove the object from memory. Java remembers already running finalize() on this object and will not do so again. The lesson is that the finalize() call could run zero or one time. This is the exact same lesson as the simple example—that’s why it’s so easy to
+
 ### 1.11. Benefits of Java
 
 ### 1.12. Summary 
